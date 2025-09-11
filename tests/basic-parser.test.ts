@@ -20,3 +20,20 @@ test("parseCSV yields only arrays", async () => {
     expect(Array.isArray(row)).toBe(true);
   }
 });
+
+test("parseCSV handles empty fields", async () => {
+  // Simulate a CSV with empty fields
+  const csvWithEmptyFields = path.join(__dirname, "../data/empty-fields.csv");
+  /*
+    Contents of empty-fields.csv:
+    name,age,city
+    Alice,23,
+    ,30,New York
+    Bob,,Los Angeles
+  */
+  const results = await parseCSV(csvWithEmptyFields);
+  expect(results[0]).toEqual(["name", "age", "city"]);
+  expect(results[1]).toEqual(["Alice", "23", ""]);
+  expect(results[2]).toEqual(["", "30", "New York"]);
+  expect(results[3]).toEqual(["Bob", "", "Los Angeles"]);
+});
