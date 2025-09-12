@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as readline from "readline";
-import z from "zod";
+import { ZodType } from "zod";
 
 /**
  * This is a JSDoc comment. Similar to JavaDoc, it documents a public-facing
@@ -15,26 +15,31 @@ import z from "zod";
  * @param path The path to the file being loaded.
  * @returns a "promise" to produce a 2-d array of cell values
  */
-export async function parseCSV(path: string): Promise<string[][]> {
-  // This initial block of code reads from a file in Node.js. The "rl"
-  // value can be iterated over in a "for" loop. 
+export async function parseCSV<T = string[]>(
+  path: string,
+  schema?: ZodType<T>
+): Promise<T[] | string[][]> {
   const fileStream = fs.createReadStream(path);
   const rl = readline.createInterface({
     input: fileStream,
-    crlfDelay: Infinity, // handle different line endings
+    crlfDelay: Infinity,
   });
-  
-  // Create an empty array to hold the results
-  let result = []
-  
-  // We add the "await" here because file I/O is asynchronous. 
-  // We need to force TypeScript to _wait_ for a row before moving on. 
-  // More on this in class soon!
+
+  let result: any[] = [];
   for await (const line of rl) {
     const values = line.split(",").map((v) => v.trim());
-    result.push(values)
+    if (schema) {
+      const parsed = schema.safeParse(values);
+      if (parsed.success) {
+        result.push(parsed.data);
+      } else {
+        throw parsed.error;
+      }
+    } else {
+      result.push(values);
+    }
   }
-  return result
+  return result;
 }
 
 /*
@@ -46,6 +51,3 @@ Nim Telson,11,MYAWESOMEEMAIL
 */
 
 // Schema: shape of your data
-
-const studentRowSchema = z.tuple([z.string(), z.coerce.number(), z.email()]).transform(
-  arr => ({ name: arr[0], credits: arr[1], email: arr[2] }))
