@@ -40,14 +40,20 @@
 
 - #### 1. Correctness
 
+    Simply put, a CSV parser should be able to read and separate fields correctly and output these fields as array, strings, or any other object. It should be able to catch empty fields, line endings, commas, quotes, and other characters that may mess with the parser's functionality. It should return well-structured data that is easy for the user to read. This includes the correct handling of headers and separating them from the actual data. 
+
+    Additionally, it should be able to detect and report issues in CSV files, such as unclosed quotes. It should be returned as an error to the user so that they understand what the issue is. Furthermore, it should be able to parse extremely large sets of data in a reasonable amount of time. 
+
 - #### 2. Random, On-Demand Generation
+
+    Randomly generated CSV files can help us test a wide variety of edge cases and scenarios that we may not have considered the first time around. We can find trailing commas, large amounts of quotes, extremely long fields, etc. Our testing would be forced to consider each and every possibility, further improving the parser's functionality. It forces us to step out of the smaller CSV files that we have already made and think from a broader perspective. Every randomly generated CSV file will be fundamentally different.
 
 - #### 3. Overall experience, Bugs encountered and resolved
 #### Errors/Bugs:
 #### Tests:
 #### How To…
 
-#### Team members and contributions (include cs logins):
+#### Team members and contributions (include cs logins): N/A
 
 #### Collaborators (cslogins of anyone you worked with on this project and/or generative AI):
 #### Total estimated time it took to complete project:
