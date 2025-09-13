@@ -49,12 +49,23 @@
     Randomly generated CSV files can help us test a wide variety of edge cases and scenarios that we may not have considered the first time around. We can find trailing commas, large amounts of quotes, extremely long fields, etc. Our testing would be forced to consider each and every possibility, further improving the parser's functionality. It forces us to step out of the smaller CSV files that we have already made and think from a broader perspective. Every randomly generated CSV file will be fundamentally different.
 
 - #### 3. Overall experience, Bugs encountered and resolved
+
+    Overall, this sprint seemed more focus on general brainstorming and problem-solving rather than jumping straight into coding, an experience much unlike my other programming classes. Additionally, this is the first class I've taken that permits and even encourages the use of generative AI platforms for help. This change in approach was a bit of a learning curve, but now I feel ready to solve these head-on
+
 #### Errors/Bugs:
+
+    I didn't encounter any major bugs while solving this.
+
 #### Tests:
+
+    I (along with the help of Copilot) brainstormed ideas to both ensure the parser was functional and to explore potential expansion solutions. When making tests, I focused on the former, testing for edge cases such as double quotes, commas, and new lines. I attempted to come out with all potnetial scenarios to set a good framework for ensuring that it works as intended.
+
 #### How To…
+
+    To test: Run npm test.
 
 #### Team members and contributions (include cs logins): N/A
 
-#### Collaborators (cslogins of anyone you worked with on this project and/or generative AI):
-#### Total estimated time it took to complete project:
-#### Link to GitHub Repo:  
+#### Collaborators (cslogins of anyone you worked with on this project and/or generative AI): Github Copilot
+#### Total estimated time it took to complete project: 5 hours
+#### Link to GitHub Repo: https://github.com/cs0320-f25/typescript-csv-AkshathMirukula

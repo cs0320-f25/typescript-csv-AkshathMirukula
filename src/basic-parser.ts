@@ -34,7 +34,7 @@ export async function parseCSV<T = string[]>(
         result.push(parsed.data);
       } else {
         throw parsed.error;
-      }
+      }   
     } else {
       result.push(values);
     }
